@@ -1,0 +1,7 @@
+apis:
+  - endpoint: profile
+    type: object
+  - endpoint: works
+    type: list
+  - endpoint: news
+    type: list
