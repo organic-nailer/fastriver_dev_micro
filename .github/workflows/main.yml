@@ -24,12 +24,6 @@ jobs:
         run: flutter pub run generator
       - name: Build
         run: flutter build web
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2.8.0
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./example/build/web
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
