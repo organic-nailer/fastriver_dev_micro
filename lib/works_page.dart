@@ -24,7 +24,10 @@ class _WorksPageState extends State<WorksPage> {
   void initState() {
     super.initState();
     final source = MicroCMSDataStore.worksData;
-    items = source.contents;
+    //新しい順に並べる
+    items = source.contents
+      ..sort((a, b) =>
+          b.create.millisecondsSinceEpoch - a.create.millisecondsSinceEpoch);
     for (var item in items) {
       itemKey[item.id] = UniqueKey();
     }
