@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
-  initializeDateFormatting('ja');
+  initializeDateFormatting('ja_JP');
   runApp(MyApp());
 }
 

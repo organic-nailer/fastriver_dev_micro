@@ -83,7 +83,7 @@ class DetailPage extends StatelessWidget {
                                                 CrossAxisAlignment.stretch,
                                             children: [
                                               Text(
-                                                "${formatter.format(date)} 作成",
+                                                "${formatter.format(date.toLocal())} 作成",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .caption,

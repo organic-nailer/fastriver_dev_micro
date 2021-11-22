@@ -75,7 +75,7 @@ class _WorksPageState extends State<WorksPage> {
                         child: Opacity(
                           opacity: 0.3,
                           child: Text(
-                            dateFormat.format(data.create),
+                            dateFormat.format(data.create.toLocal()),
                             style: Theme.of(context).textTheme.headline2?.merge(
                                 const TextStyle(
                                     fontStyle: FontStyle.italic,
