@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:fastriver_dev_micro/works_page.dart';
+import 'package:fastriver_dev_micro/types.microcms.g.dart';
 import 'package:flutter/material.dart';
 import "package:intl/intl.dart";
 import 'package:url_launcher/url_launcher.dart';
@@ -9,7 +9,7 @@ import 'package:webviewx/webviewx.dart';
 var formatter = DateFormat('yyyy年 MM月', "ja_JP");
 
 class DetailPage extends StatelessWidget {
-  final WorksData product;
+  final WorksMicroData product;
   const DetailPage({Key? key, required this.product}) : super(key: key);
 
   void _launchUrl(String url) async {
@@ -20,7 +20,7 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var date = product.date;
+    var date = product.create;
     return LayoutBuilder(builder: (context, constraints) {
       var width = constraints.biggest.width;
       return Scaffold(
@@ -31,9 +31,9 @@ class DetailPage extends StatelessWidget {
                 background: ColorFiltered(
                   colorFilter: const ColorFilter.mode(
                       Colors.black26, BlendMode.multiply),
-                  child: product.headerImg != null
+                  child: product.header != null
                       ? Image.network(
-                          product.headerImg!,
+                          product.header!.url,
                           fit: BoxFit.cover,
                         )
                       : Container(),
@@ -70,7 +70,7 @@ class DetailPage extends StatelessWidget {
                                     children: [
                                       if (product.icon != null)
                                         Image.network(
-                                          product.icon!,
+                                          product.icon!.url,
                                           width: min(width * 0.2, 200),
                                         ),
                                       Expanded(
@@ -95,7 +95,7 @@ class DetailPage extends StatelessWidget {
                                                     .headline2,
                                               ),
                                               Text(
-                                                product.shortText ?? "[short]",
+                                                product.short_text ?? "[short]",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .subtitle1,
@@ -106,28 +106,31 @@ class DetailPage extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                  Wrap(
-                                    children: product.links
-                                        .map((e) => Padding(
-                                              padding:
-                                                  const EdgeInsets.all(4.0),
-                                              child: ElevatedButton(
-                                                  child: Text(e.name),
-                                                  onPressed: () async {
-                                                    _launchUrl(e.url);
-                                                  },
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30.0),
-                                                  ))),
-                                            ))
-                                        .toList(),
-                                    alignment: WrapAlignment.start,
-                                  ),
+                                  if (product.links != null)
+                                    Wrap(
+                                      children: product.links!
+                                          .map((e) => Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: ElevatedButton(
+                                                    child: Text(
+                                                        (e as WorksLinkMicroData)
+                                                            .name),
+                                                    onPressed: () async {
+                                                      _launchUrl(e.url);
+                                                    },
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30.0),
+                                                    ))),
+                                              ))
+                                          .toList(),
+                                      alignment: WrapAlignment.start,
+                                    ),
                                   Card(
                                     shape: RoundedRectangleBorder(
                                         borderRadius:

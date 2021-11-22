@@ -1,6 +1,6 @@
+import 'package:fastriver_dev_micro/datastore.microcms.g.dart';
 import 'package:fastriver_dev_micro/fast_color.dart';
 import 'package:fastriver_dev_micro/home_view.dart';
-import 'package:fastriver_dev_micro/micro_cms_data.gen.g.dart';
 import 'package:fastriver_dev_micro/safe_launch.dart';
 import 'package:fastriver_dev_micro/theme_switcher.dart';
 import 'package:fastriver_dev_micro/under_construction_view.dart';
@@ -68,15 +68,15 @@ class MyApp extends StatelessWidget {
             path: "/works/:wid",
             pageBuilder: (context, state) {
               final wid = state.params["wid"]!;
-              final data = worksData()["contents"] as List;
-              final work = data.firstWhere((e) => e["id"] == wid,
+              final data = MicroCMSDataStore.worksData.contents;
+              final work = data.firstWhere((e) => e.id == wid,
                   orElse: () => throw Exception("works not found: $wid"));
 
               return MaterialPage(
                   key: state.pageKey,
                   child: DetailPage(
                     key: state.pageKey,
-                    product: WorksData.fromMap(work),
+                    product: work,
                   ));
             })
       ],
@@ -87,9 +87,9 @@ class MyApp extends StatelessWidget {
           )));
 }
 
-Future<String> getProfile() async {
-  return profileData().toString();
-}
+// Future<String> getProfile() async {
+//   return profileData().toString();
+// }
 
 class MyHomePage extends StatefulWidget {
   final int index;

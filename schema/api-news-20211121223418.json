@@ -1,0 +1,15 @@
+{
+    "apiFields": [{
+        "idValue": "UvTBq04hmS",
+        "fieldId": "title",
+        "name": "タイトル",
+        "kind": "text",
+        "required": true,
+        "isUnique": false
+    }, {
+        "fieldId": "description",
+        "name": "詳細",
+        "kind": "textArea"
+    }],
+    "customFields": []
+}

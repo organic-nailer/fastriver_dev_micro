@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:fastriver_dev_micro/animated_grid.dart';
-import 'package:fastriver_dev_micro/micro_cms_data.gen.g.dart';
+import 'package:fastriver_dev_micro/datastore.microcms.g.dart';
+import 'package:fastriver_dev_micro/types.microcms.g.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:go_router/go_router.dart';
@@ -17,14 +18,15 @@ class WorksPage extends StatefulWidget {
 
 class _WorksPageState extends State<WorksPage> {
   final keys = List.generate(10, (index) => UniqueKey());
-  List<WorksData> items = [];
+  List<WorksMicroData> items = [];
+  Map<String, Key> itemKey = {};
   @override
   void initState() {
     super.initState();
-    final source = worksData();
-    final contents = source["contents"] as List;
-    for (var content in contents) {
-      items.add(WorksData.fromMap(content));
+    final source = MicroCMSDataStore.worksData;
+    items = source.contents;
+    for (var item in items) {
+      itemKey[item.id] = UniqueKey();
     }
   }
 
@@ -34,14 +36,14 @@ class _WorksPageState extends State<WorksPage> {
       var width = constraints.biggest.width;
       var columnSize = max(width ~/ 300, 1);
       return SingleChildScrollView(
-        child: AnimatedGrid<WorksData>(
+        child: AnimatedGrid<WorksMicroData>(
             itemHeight: 400,
             itemWidth: 300,
             items: items,
             columns: columnSize,
             crossAxisAlignment: CrossAxisAlignment.center,
             curve: Curves.easeInOutBack,
-            keyBuilder: (item) => item.key!,
+            keyBuilder: (item) => itemKey[item.id]!,
             builder: (context, item, details) {
               return itemWidget(item);
             }),
@@ -49,7 +51,7 @@ class _WorksPageState extends State<WorksPage> {
     });
   }
 
-  Widget itemWidget(WorksData data) => Card(
+  Widget itemWidget(WorksMicroData data) => Card(
         margin: const EdgeInsets.all(8),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
@@ -73,7 +75,7 @@ class _WorksPageState extends State<WorksPage> {
                         child: Opacity(
                           opacity: 0.3,
                           child: Text(
-                            dateFormat.format(data.date),
+                            dateFormat.format(data.create),
                             style: Theme.of(context).textTheme.headline2?.merge(
                                 const TextStyle(
                                     fontStyle: FontStyle.italic,
@@ -92,7 +94,7 @@ class _WorksPageState extends State<WorksPage> {
                           borderRadius: BorderRadius.circular(20.0),
                           child: data.icon != null
                               ? Image.network(
-                                  data.icon!,
+                                  data.icon!.url,
                                   height: 180,
                                   width: 180,
                                 )
@@ -112,7 +114,7 @@ class _WorksPageState extends State<WorksPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Text(data.shortText ?? "",
+                          child: Text(data.short_text ?? "",
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: Theme.of(context).textTheme.bodyText1),
@@ -124,47 +126,4 @@ class _WorksPageState extends State<WorksPage> {
               )),
         ),
       );
-}
-
-class WorksData {
-  final String id;
-  final String title;
-  final String? icon;
-  final DateTime date;
-  final String? shortText;
-  final String? description;
-  final String? headerImg;
-  final List<LinkData> links;
-  UniqueKey? key;
-  WorksData(this.id, this.title, this.icon, this.date, this.shortText,
-      this.description, this.headerImg, this.links) {
-    key = UniqueKey();
-  }
-
-  static WorksData fromMap(Map<String, dynamic> data) {
-    return WorksData(
-        data["id"],
-        data["title"],
-        getImageLink(data["icon"]),
-        DateTime.parse(data["create"]),
-        data["short_text"],
-        data["description"],
-        getImageLink(data["header"]),
-        LinkData.fromMapList(data["links"]));
-  }
-
-  static String? getImageLink(Map<String, dynamic>? data) {
-    if (data == null) return null;
-    return data["url"];
-  }
-}
-
-class LinkData {
-  final String url;
-  final String name;
-  const LinkData(this.url, this.name);
-
-  static List<LinkData> fromMapList(List<dynamic>? data) {
-    return data?.map((e) => LinkData(e["url"], e["name"])).toList() ?? [];
-  }
 }

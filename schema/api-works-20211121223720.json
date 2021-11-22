@@ -1,0 +1,61 @@
+{
+    "apiFields": [{
+        "idValue": "09NLIIwzjK",
+        "fieldId": "title",
+        "name": "タイトル",
+        "kind": "text",
+        "required": true,
+        "isUnique": false
+    }, {
+        "fieldId": "icon",
+        "name": "アイコン",
+        "kind": "media"
+    }, {
+        "fieldId": "create",
+        "name": "制作日",
+        "kind": "date",
+        "required": true
+    }, {
+        "fieldId": "short_text",
+        "name": "概要",
+        "kind": "text",
+        "isUnique": false
+    }, {
+        "fieldId": "description",
+        "name": "詳細",
+        "kind": "richEditor"
+    }, {
+        "fieldId": "header",
+        "name": "ヘッダ画像",
+        "kind": "media"
+    }, {
+        "fieldId": "links",
+        "name": "関連リンク",
+        "kind": "repeater",
+        "customFieldCreatedAtList": ["2021-11-17T11:15:18.994Z"]
+    }],
+    "customFields": [{
+        "createdAt": "2021-11-17T11:15:18.994Z",
+        "fieldId": "link",
+        "name": "関連リンク",
+        "fields": [{
+            "idValue": "kIbCgjFLHP",
+            "fieldId": "url",
+            "name": "URL",
+            "kind": "text",
+            "required": true
+        }, {
+            "idValue": "z5Fsd_JiqW",
+            "fieldId": "name",
+            "name": "名前",
+            "kind": "text",
+            "required": true
+        }],
+        "position": [
+            ["z5Fsd_JiqW"],
+            ["kIbCgjFLHP"]
+        ],
+        "updatedAt": "2021-11-17T11:15:18.994Z",
+        "viewerGroup": "Phx"
+    }]
+}

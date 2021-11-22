@@ -21,7 +21,7 @@ jobs:
           MICRO_CMS_API_KEY: ${{ secrets.MICRO_CMS_API_KEY }}
         run: echo API_KEY=$MICRO_CMS_API_KEY > .env
       - name: Fetch api data
-        run: flutter pub run generator
+        run: flutter pub run static_micro_cms
       - name: Build
         run: flutter build web
       - uses: FirebaseExtended/action-hosting-deploy@v0

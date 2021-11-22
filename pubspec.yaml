@@ -49,9 +49,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  generator:
-    path: ./generator
-  build_runner: any
+  static_micro_cms: ^0.1.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -59,6 +57,19 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+
+static_micro_cms:
+  baseUrl: "https://fastriver-dev.microcms.io/api/v1"
+  apis:
+    - endpoint: profile
+      type: object
+      schema: schema/api-profile-20211122080708.json
+    - endpoint: works
+      type: list
+      schema: schema/api-works-20211121223720.json
+    - endpoint: news
+      type: list
+      schema: schema/api-news-20211121223418.json
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
