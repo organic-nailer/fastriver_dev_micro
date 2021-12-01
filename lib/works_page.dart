@@ -105,18 +105,22 @@ class _WorksPageState extends State<WorksPage> {
                                   size: 180),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
+                          padding: const EdgeInsets.only(top: 16.0),
                           child: Text(
                             data.title,
                             textAlign: TextAlign.center,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.headline4,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4
+                                ?.merge(const TextStyle(height: 1)),
                             //style: FastTheme.of(context).theme.textTheme.bodyText1,
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.only(
+                              top: 16, left: 16, right: 16),
                           child: Text(data.short_text ?? "",
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
