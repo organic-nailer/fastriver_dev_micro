@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
             path: "/works/:wid",
             pageBuilder: (context, state) {
               final wid = state.params["wid"]!;
-              final data = MicroCMSDataStore.worksData.contents;
+              final data = MicroCMSDataStore.worksData;
               final work = data.firstWhere((e) => e.id == wid,
                   orElse: () => throw Exception("works not found: $wid"));
 

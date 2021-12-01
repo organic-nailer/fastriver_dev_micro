@@ -25,7 +25,7 @@ class _WorksPageState extends State<WorksPage> {
     super.initState();
     final source = MicroCMSDataStore.worksData;
     //新しい順に並べる
-    items = source.contents
+    items = source
       ..sort((a, b) =>
           b.create.millisecondsSinceEpoch - a.create.millisecondsSinceEpoch);
     for (var item in items) {
