@@ -69,9 +69,13 @@ class DetailPage extends StatelessWidget {
                                   Row(
                                     children: [
                                       if (product.icon != null)
-                                        Image.network(
-                                          product.icon!.url,
-                                          width: min(width * 0.2, 200),
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                          child: Image.network(
+                                            product.icon!.url,
+                                            width: min(width * 0.2, 200),
+                                          ),
                                         ),
                                       Expanded(
                                         child: Padding(
