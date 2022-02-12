@@ -1,10 +1,10 @@
 import 'dart:math';
 
+import 'package:adjusted_html_view_web/adjusted_html_view_web.dart';
 import 'package:fastriver_dev_micro/types.microcms.g.dart';
 import 'package:flutter/material.dart';
 import "package:intl/intl.dart";
 import 'package:url_launcher/url_launcher.dart';
-import 'package:webviewx/webviewx.dart';
 
 var formatter = DateFormat('yyyy年 MM月', "ja_JP");
 
@@ -135,45 +135,9 @@ class DetailPage extends StatelessWidget {
                                           .toList(),
                                       alignment: WrapAlignment.start,
                                     ),
-                                  Card(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20.0),
-                                        side: (Theme.of(context).cardTheme.shape
-                                                as RoundedRectangleBorder)
-                                            .side),
-                                    color: Colors.white70,
-                                    child: WebViewX(
-                                      height: 800,
-                                      width: 800 - 32 - 16,
-                                      initialContent: product.description ??
-                                          "<h1>No Description</h1>",
-                                      ignoreAllGestures: false,
-                                      initialSourceType: SourceType.html,
-                                      onWebViewCreated: (c) async {
-                                        print("WebView Created");
-                                      },
-                                    ),
-                                  )
-                                  // SizedBox(
-                                  //   height: 500,
-                                  //   width: 500,
-                                  //   child: EasyWebView(
-                                  //     src: product.description ??
-                                  //         "<h1>No Description</h1>",
-                                  //     isHtml: true,
-                                  //     convertToWidgets: true,
-                                  //     onLoaded: () {
-                                  //       print("loaded");
-                                  //     },
-                                  //   ),
-                                  // )
-                                  // Padding(
-                                  //   padding: const EdgeInsets.only(
-                                  //       top: 24, bottom: 24, left: 8, right: 8),
-                                  //   child:
-                                  //       Text(product.description ?? "[desc]"),
-                                  // ),
+                                  AdjustedHtmlView(
+                                      htmlText: product.description ??
+                                          "<h1>No description</h1>"),
                                 ],
                               ),
                             ),
