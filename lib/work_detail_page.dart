@@ -148,7 +148,7 @@ class DetailPage extends StatelessWidget {
                                       width: 800 - 32 - 16,
                                       initialContent: product.description ??
                                           "<h1>No Description</h1>",
-                                      ignoreAllGestures: true,
+                                      ignoreAllGestures: false,
                                       initialSourceType: SourceType.html,
                                       onWebViewCreated: (c) async {
                                         print("WebView Created");
