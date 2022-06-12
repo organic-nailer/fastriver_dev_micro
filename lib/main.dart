@@ -9,9 +9,11 @@ import 'package:fastriver_dev_micro/works_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fast_ui_white/flutter_fast_ui_white.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   initializeDateFormatting('ja_JP');
   runApp(MyApp());
 }
@@ -28,8 +30,8 @@ class MyApp extends StatelessWidget {
         builder: (context, lightTheme, darkTheme, mode) {
           return MaterialApp.router(
             title: 'Fastriver.dev',
-            theme: lightTheme,
-            darkTheme: darkTheme,
+            theme: lightTheme.copyWith(textTheme: GoogleFonts.kleeOneTextTheme(lightTheme.textTheme)),
+            darkTheme: darkTheme.copyWith(textTheme: GoogleFonts.kleeOneTextTheme(darkTheme.textTheme)),
             themeMode: mode,
             routeInformationParser: _router.routeInformationParser,
             routerDelegate: _router.routerDelegate,
