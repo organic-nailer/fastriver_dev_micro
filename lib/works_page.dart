@@ -63,7 +63,7 @@ class _WorksPageState extends State<WorksPage> {
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: () {
-            context.go("/works/${data.id}");
+            context.push("/works/${data.id}");
           },
           child: Container(
               height: 500,

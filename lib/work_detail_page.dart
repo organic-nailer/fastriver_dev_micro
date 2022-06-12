@@ -5,6 +5,7 @@ import 'package:fastriver_dev_micro/types.microcms.g.dart';
 import 'package:flutter/material.dart';
 import "package:intl/intl.dart";
 import 'package:url_launcher/url_launcher.dart';
+import 'package:go_router/go_router.dart';
 
 var formatter = DateFormat('yyyy年 MM月', "ja_JP");
 
@@ -43,7 +44,10 @@ class DetailPage extends StatelessWidget {
               floating: true,
               expandedHeight: 300,
               backgroundColor: Theme.of(context).primaryColor,
-              title: Text("Fastriver.dev - ${product.title}"),
+              leading: IconButton(onPressed: () {
+                context.pop();
+              }, icon: const Icon(Icons.arrow_back)),
+              title: Text(product.title),
             ),
             SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
