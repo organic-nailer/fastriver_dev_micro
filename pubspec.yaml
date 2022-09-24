@@ -35,6 +35,8 @@ dependencies:
       ref: v0.3
   adjusted_html_view_web: ^0.0.2
 
+  static_data_fetcher:
+    path: static_data_fetcher
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -48,6 +50,9 @@ dependencies:
   go_router: ^2.2.8
   uuid: ^3.0.5
   google_fonts: ^3.0.1
+  flutter_riverpod: ^1.0.4
+  xml: ^6.1.0
+  flutter_svg: ^1.1.5
 
 dev_dependencies:
   flutter_test:
@@ -64,15 +69,28 @@ dev_dependencies:
 static_micro_cms:
   baseUrl: "https://fastriver-dev.microcms.io/api/v1"
   apis:
-    - endpoint: profile
-      type: object
-      schema: schema/api-profile-20211122080708.json
     - endpoint: works
       type: list
       schema: schema/api-works-20211121223720.json
-    - endpoint: news
+    - endpoint: activity
       type: list
-      schema: schema/api-news-20211121223418.json
+      schema: schema/api-activity-20220924174127.json
+
+static_data_fetcher:
+  - label: zenn
+    type: xml
+    url: "https://zenn.dev/fastriver/feed"
+  - label: qiita
+    type: json
+    url: "https://qiita.com/api/v2/users/fastriver_org/items?per_page=100"
+    ignore_attributes:
+      - "rendered_body"
+      - "body"
+  - label: hatena
+    type: xml
+    url: "https://nageler.hatenablog.com/rss"
+    ignore_attributes:
+      - "description"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -87,6 +105,11 @@ flutter:
   assets:
     - asset/logo_github.png
     - asset/logo_twitter.png
+    - asset/fastriver_logo.jpg
+    - asset/logo_zenn.svg
+    - asset/logo_qiita.png
+    - asset/logo_hatena.svg
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

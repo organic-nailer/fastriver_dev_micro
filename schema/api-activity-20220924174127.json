@@ -1,0 +1,30 @@
+{
+    "apiFields": [
+        {
+            "idValue": "Tm9S3fVocL",
+            "fieldId": "title",
+            "name": "タイトル",
+            "kind": "text",
+            "required": true,
+            "isUnique": false
+        },
+        {
+            "fieldId": "activity_date",
+            "name": "実施日",
+            "kind": "date",
+            "required": true
+        },
+        {
+            "fieldId": "description",
+            "name": "詳細",
+            "kind": "textArea"
+        },
+        {
+            "fieldId": "link",
+            "name": "リンク",
+            "kind": "text",
+            "isUnique": false
+        }
+    ],
+    "customFields": []
+}

@@ -6,6 +6,8 @@ on:
   push:
     tags:
       - 'v*'
+  schedule:
+    - cron: "0 0 * * 0"
 
 jobs:
   build-deploy:
@@ -23,6 +25,8 @@ jobs:
           channel: stable
       - name: Install
         run: flutter pub get
+      - name: Fetch blog data
+        run: flutter pub run static_data_fetcher
       - name: Create .env file
         env:
           MICRO_CMS_API_KEY: ${{ secrets.MICRO_CMS_API_KEY }}

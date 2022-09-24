@@ -1,6 +1,7 @@
 import 'package:fastriver_dev_micro/datastore.microcms.g.dart';
 import 'package:fastriver_dev_micro/fast_color.dart';
 import 'package:fastriver_dev_micro/home_view.dart';
+import 'package:fastriver_dev_micro/profile_view.dart';
 import 'package:fastriver_dev_micro/safe_launch.dart';
 import 'package:fastriver_dev_micro/theme_switcher.dart';
 import 'package:fastriver_dev_micro/under_construction_view.dart';
@@ -8,6 +9,7 @@ import 'package:fastriver_dev_micro/work_detail_page.dart';
 import 'package:fastriver_dev_micro/works_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fast_ui_white/flutter_fast_ui_white.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -15,7 +17,7 @@ import 'package:intl/date_symbol_data_local.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   initializeDateFormatting('ja_JP');
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -231,7 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ? const WorksPage()
                     : widget.index == 0
                         ? const HomeView()
-                        : const UnderConstructionView())
+                        : ProfileView())
           ],
         ),
       );
