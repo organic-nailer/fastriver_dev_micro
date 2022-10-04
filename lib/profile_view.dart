@@ -39,7 +39,11 @@ class ProfileView extends ConsumerWidget {
                 ),
                 Text("活動", style: Theme.of(context).textTheme.headlineLarge,),
                 const Divider(),
-                ...MicroCMSDataStore.activityData.map((item) => ActivityItem(data: item)),
+                ...MicroCMSDataStore
+                  .activityData
+                  .map((item) => ActivityItem(data: item))
+                  .toList()
+                  ..sort(((a, b) => -a.data.publishedAt.compareTo(b.data.publishedAt))),
                 Text("ブログ", style: Theme.of(context).textTheme.headlineLarge,),
                 const Divider(),
                 ...ref.read(blogsProvider).map((item) => BlogItem(data: item)),
