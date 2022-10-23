@@ -1,3 +1,4 @@
+import 'package:align_positioned/align_positioned.dart';
 import 'package:fastriver_dev_micro/fast_color.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -15,15 +16,21 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        // 背景図形のサイズ(正方形)
         final shapeWidth = math.min(constraints.biggest.width / 6, 120.0);
+        // 上下左右の余白を含めたサイズ
         final shapeWWithOffset = shapeWidth * 1.2;
+        // 横方向に並べる数
         final columnSize =
             ((constraints.biggest.width) / (shapeWWithOffset * 2)).ceil() * 2;
+        // 一番左の図形の位置
         final leftPosition = constraints.biggest.width / 2 -
             shapeWWithOffset * columnSize / 2 +
             shapeWidth / 10;
+        // 縦方向に並べる数
         final rowSize =
             ((constraints.biggest.height) / (shapeWWithOffset * 2)).ceil() * 2;
+        // 一番上の図形の位置
         final topPosition = constraints.biggest.height / 2 -
             shapeWWithOffset * rowSize / 2 +
             shapeWidth / 10;
@@ -44,17 +51,19 @@ class _HomeViewState extends State<HomeView> {
                 ),
               );
             }),
-            Align(
+            AlignPositioned(
               alignment: Alignment(
-                  0, -shapeWWithOffset / constraints.biggest.height * 3),
+                0, -shapeWWithOffset / constraints.biggest.height * 2.4),
+              moveByChildHeight: -0.5,
               child: Text(
                 "Fastriver.dev",
                 style: Theme.of(context).textTheme.headline2,
               ),
             ),
-            Align(
+            AlignPositioned(
               alignment: Alignment(
-                  0, shapeWWithOffset / constraints.biggest.height * 4),
+                  0, shapeWWithOffset / constraints.biggest.height * 2.4),
+              moveByChildHeight: 0.5,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -94,7 +103,7 @@ class _HomeViewState extends State<HomeView> {
                   )
                 ],
               ),
-            )
+            ),
           ],
         );
       },
