@@ -27,6 +27,7 @@ class _ThemeSwitcherState extends State<ThemeSwitcher> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text("Light", style: Theme.of(context).textTheme.bodyText1),
           Switch(

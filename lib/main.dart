@@ -109,6 +109,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _key.currentState?.openDrawer();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final isPhone = constraints.biggest.width <= 480;
@@ -159,15 +165,31 @@ class _MyHomePageState extends State<MyHomePage> {
                   isAntiAlias: true,
                   semanticLabel: "Twitter",
                 )),
-            const ThemeSwitcher()
+            if(!isPhone) const ThemeSwitcher(),
+            const SizedBox(
+              width: 8,
+            )
           ],
         ),
         drawer: isPhone
             ? Drawer(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(
+                      height: 64,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: IconButton(onPressed: () {
+                          _key.currentState!.closeDrawer();
+                        }, icon: const Icon(Icons.arrow_back), iconSize: 32,),
+                      ),
+                    ),
                     ListTile(
-                      leading: const Icon(Icons.house_outlined),
+                      leading: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(Icons.house_outlined, size: 32,),
+                      ),
                       title: const Text("ホーム"),
                       onTap: () {
                         _key.currentState!.openEndDrawer();
@@ -175,7 +197,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.museum_outlined),
+                      leading: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(Icons.museum_outlined, size: 32,),
+                      ),
                       title: const Text("作品集"),
                       onTap: () {
                         _key.currentState!.openEndDrawer();
@@ -183,13 +208,22 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.badge_outlined),
+                      leading: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(Icons.badge_outlined, size: 32,),
+                      ),
                       title: const Text("プロフィール"),
                       onTap: () {
                         _key.currentState!.openEndDrawer();
                         context.go("/profile");
                       },
                     ),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Divider(),
+                    ),
+                    const Center(
+                      child: ThemeSwitcher())
                   ],
                 ),
               )
