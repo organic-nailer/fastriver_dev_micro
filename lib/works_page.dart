@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:fastriver_dev_micro/animated_grid.dart';
 import 'package:fastriver_dev_micro/datastore.microcms.g.dart';
 import 'package:fastriver_dev_micro/types.microcms.g.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide AnimatedGrid;
 import 'package:intl/intl.dart';
 import 'package:go_router/go_router.dart';
 
