@@ -2,9 +2,6 @@ import 'dart:convert';
 
 import 'package:fastriver_dev_micro/model/blog.dart';
 import 'package:fastriver_dev_micro/static_fetched_data.g.dart';
-import 'package:fastriver_dev_micro/util/parse_rfc822.dart';
-
-import 'package:xml/xml.dart';
 
 class BlogsQiita {
   List<Blog> get() {

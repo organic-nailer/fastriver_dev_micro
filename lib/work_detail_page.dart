@@ -91,19 +91,19 @@ class DetailPage extends StatelessWidget {
                                                 "${formatter.format(date.toLocal())} 作成",
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .caption,
+                                                    .bodySmall,
                                               ),
                                               Text(
                                                 product.title,
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .headline2,
+                                                    .displayMedium,
                                               ),
                                               Text(
                                                 product.short_text ?? "[short]",
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .subtitle1,
+                                                    .titleMedium,
                                               ),
                                             ],
                                           ),

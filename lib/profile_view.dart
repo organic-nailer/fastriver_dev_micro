@@ -33,7 +33,7 @@ class ProfileView extends ConsumerWidget {
                     child: Image.asset("asset/fastriver_logo.jpg")
                   ),
                 ),
-                Text("Fastriver/@fastriver_org", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyText1,),
+                Text("Fastriver/@fastriver_org", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge,),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("時代は20XX年。空前の四字熟語ブームにより“四字熟語戦国時代”と化した矢上。勉強や喧嘩の強さではなく四字熟語を積んだ高さで優劣を決められてしまう世界で、激しいタワーバトルを繰り広げる暇人たちの熱い戦いが繰り広げられる― / 「四字熟語タワーバトル」より"),

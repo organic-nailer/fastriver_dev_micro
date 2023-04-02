@@ -57,7 +57,7 @@ class _HomeViewState extends State<HomeView> {
               moveByChildHeight: -0.5,
               child: Text(
                 "Fastriver.dev",
-                style: Theme.of(context).textTheme.headline2,
+                style: Theme.of(context).textTheme.displayMedium,
               ),
             ),
             AlignPositioned(

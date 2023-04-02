@@ -80,7 +80,7 @@ class _WorksPageState extends State<WorksPage> {
                               opacity: 0.3,
                               child: Text(
                                 dateFormat.format(data.create.toLocal()),
-                                style: Theme.of(context).textTheme.headline2?.merge(
+                                style: Theme.of(context).textTheme.displayMedium?.merge(
                                     const TextStyle(
                                         fontStyle: FontStyle.italic,
                                         height: 1,
@@ -114,7 +114,7 @@ class _WorksPageState extends State<WorksPage> {
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headline4
+                                    .headlineMedium
                                     ?.merge(const TextStyle(height: 1)),
                                 //style: FastTheme.of(context).theme.textTheme.bodyText1,
                               ),
@@ -125,7 +125,7 @@ class _WorksPageState extends State<WorksPage> {
                               child: Text(data.short_text ?? "",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.bodyText1),
+                                  style: Theme.of(context).textTheme.bodyLarge),
                             )
                           ],
                         ),

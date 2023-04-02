@@ -29,7 +29,7 @@ class _ThemeSwitcherState extends State<ThemeSwitcher> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text("Light", style: Theme.of(context).textTheme.bodyText1),
+          Text("Light", style: Theme.of(context).textTheme.bodyLarge),
           Switch(
               value: isDark,
               onChanged: (value) {
@@ -39,7 +39,7 @@ class _ThemeSwitcherState extends State<ThemeSwitcher> {
                   isDark = value;
                 });
               }),
-          Text("Dark", style: Theme.of(context).textTheme.bodyText1),
+          Text("Dark", style: Theme.of(context).textTheme.bodyLarge),
         ],
       ),
     );
