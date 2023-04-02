@@ -4,7 +4,7 @@ import 'package:adjusted_html_view_web/adjusted_html_view_web.dart';
 import 'package:fastriver_dev_micro/types.microcms.g.dart';
 import 'package:flutter/material.dart';
 import "package:intl/intl.dart";
-import 'package:url_launcher/Link.dart';
+import 'package:url_launcher/link.dart';
 
 var formatter = DateFormat('yyyy年 MM月', "ja_JP");
 

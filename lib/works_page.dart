@@ -5,7 +5,7 @@ import 'package:fastriver_dev_micro/datastore.microcms.g.dart';
 import 'package:fastriver_dev_micro/types.microcms.g.dart';
 import 'package:flutter/material.dart' hide AnimatedGrid;
 import 'package:intl/intl.dart';
-import 'package:url_launcher/Link.dart';
+import 'package:url_launcher/link.dart';
 
 var dateFormat = DateFormat('yyyy/MM');
 

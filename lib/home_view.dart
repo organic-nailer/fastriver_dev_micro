@@ -1,7 +1,7 @@
 import 'package:align_positioned/align_positioned.dart';
 import 'package:fastriver_dev_micro/fast_color.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/Link.dart';
+import 'package:url_launcher/link.dart';
 import 'dart:math' as math;
 
 class HomeView extends StatefulWidget {

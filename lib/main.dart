@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'package:url_launcher/Link.dart';
+import 'package:url_launcher/link.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
