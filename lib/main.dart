@@ -2,7 +2,6 @@ import 'package:fastriver_dev_micro/datastore.microcms.g.dart';
 import 'package:fastriver_dev_micro/fast_color.dart';
 import 'package:fastriver_dev_micro/home_view.dart';
 import 'package:fastriver_dev_micro/profile_view.dart';
-import 'package:fastriver_dev_micro/safe_launch.dart';
 import 'package:fastriver_dev_micro/theme_switcher.dart';
 import 'package:fastriver_dev_micro/work_detail_page.dart';
 import 'package:fastriver_dev_micro/works_page.dart';
@@ -13,6 +12,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:url_launcher/Link.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -155,29 +155,35 @@ class _MyHomePageState extends State<MyHomePage> {
           title: const Text("Fastriver.dev"),
           toolbarHeight: 64,
           actions: [
-            IconButton(
-                onPressed: () async {
-                  safeLaunchUrl("https://github.com/organic-nailer");
-                },
-                icon: Image.asset(
-                  "asset/logo_github.png",
-                  color: FastTheme.of(context).nonColoredAccent,
-                  isAntiAlias: true,
-                  semanticLabel: "GitHub",
-                )),
+            Link(
+              uri: Uri.parse("https://github.com/organic-nailer"),
+              builder: (context, followLink) {
+                return IconButton(
+                    onPressed: followLink,
+                    icon: Image.asset(
+                      "asset/logo_github.png",
+                      color: FastTheme.of(context).nonColoredAccent,
+                      isAntiAlias: true,
+                      semanticLabel: "GitHub",
+                    ));
+              }
+            ),
             const SizedBox(
               width: 8,
             ),
-            IconButton(
-                onPressed: () async {
-                  safeLaunchUrl("https://twitter.com/Fastriver_org");
-                },
-                icon: Image.asset(
-                  "asset/logo_twitter.png",
-                  color: FastTheme.of(context).nonColoredAccent,
-                  isAntiAlias: true,
-                  semanticLabel: "Twitter",
-                )),
+            Link(
+              uri: Uri.parse("https://twitter.com/Fastriver_org"),
+              builder: (context, followLink) {
+                return IconButton(
+                    onPressed: followLink,
+                    icon: Image.asset(
+                      "asset/logo_twitter.png",
+                      color: FastTheme.of(context).nonColoredAccent,
+                      isAntiAlias: true,
+                      semanticLabel: "Twitter",
+                    ));
+              }
+            ),
             if(!isPhone) const ThemeSwitcher(),
             const SizedBox(
               width: 8,

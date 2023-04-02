@@ -5,7 +5,7 @@ import 'package:fastriver_dev_micro/datastore.microcms.g.dart';
 import 'package:fastriver_dev_micro/types.microcms.g.dart';
 import 'package:flutter/material.dart' hide AnimatedGrid;
 import 'package:intl/intl.dart';
-import 'package:go_router/go_router.dart';
+import 'package:url_launcher/Link.dart';
 
 var dateFormat = DateFormat('yyyy/MM');
 
@@ -61,76 +61,79 @@ class _WorksPageState extends State<WorksPage> {
             side: (Theme.of(context).cardTheme.shape as RoundedRectangleBorder)
                 .side),
         clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: () {
-            context.push("/works/${data.id}");
-          },
-          child: Container(
-              height: 500,
-              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
-              child: Stack(
-                children: [
-                  Positioned(
-                      top: 8,
-                      right: 0,
-                      child: RotatedBox(
-                        quarterTurns: 1,
-                        child: Opacity(
-                          opacity: 0.3,
-                          child: Text(
-                            dateFormat.format(data.create.toLocal()),
-                            style: Theme.of(context).textTheme.headline2?.merge(
-                                const TextStyle(
-                                    fontStyle: FontStyle.italic,
-                                    height: 1,
-                                    fontWeight: FontWeight.w700)),
-                          ),
+        child: Link(
+          uri: Uri.parse("/works/${data.id}"),
+          builder: (context, followLink) {
+            return InkWell(
+              onTap: followLink,
+              child: Container(
+                  height: 500,
+                  padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                          top: 8,
+                          right: 0,
+                          child: RotatedBox(
+                            quarterTurns: 1,
+                            child: Opacity(
+                              opacity: 0.3,
+                              child: Text(
+                                dateFormat.format(data.create.toLocal()),
+                                style: Theme.of(context).textTheme.headline2?.merge(
+                                    const TextStyle(
+                                        fontStyle: FontStyle.italic,
+                                        height: 1,
+                                        fontWeight: FontWeight.w700)),
+                              ),
+                            ),
+                          )),
+                      Positioned.fill(
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 24,
+                            ),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20.0),
+                              child: data.icon != null
+                                  ? Image.network(
+                                      data.icon!.url,
+                                      height: 180,
+                                      width: 180,
+                                    )
+                                  : const Icon(Icons.dashboard_customize,
+                                      size: 180),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16.0),
+                              child: Text(
+                                data.title,
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline4
+                                    ?.merge(const TextStyle(height: 1)),
+                                //style: FastTheme.of(context).theme.textTheme.bodyText1,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 16, left: 16, right: 16),
+                              child: Text(data.short_text ?? "",
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.bodyText1),
+                            )
+                          ],
                         ),
-                      )),
-                  Positioned.fill(
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: data.icon != null
-                              ? Image.network(
-                                  data.icon!.url,
-                                  height: 180,
-                                  width: 180,
-                                )
-                              : const Icon(Icons.dashboard_customize,
-                                  size: 180),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16.0),
-                          child: Text(
-                            data.title,
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline4
-                                ?.merge(const TextStyle(height: 1)),
-                            //style: FastTheme.of(context).theme.textTheme.bodyText1,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 16, left: 16, right: 16),
-                          child: Text(data.short_text ?? "",
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.bodyText1),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              )),
+                      ),
+                    ],
+                  )),
+            );
+          }
         ),
       );
 }

@@ -1,7 +1,7 @@
 import 'package:align_positioned/align_positioned.dart';
 import 'package:fastriver_dev_micro/fast_color.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:url_launcher/Link.dart';
 import 'dart:math' as math;
 
 class HomeView extends StatefulWidget {
@@ -67,10 +67,10 @@ class _HomeViewState extends State<HomeView> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextButton(
-                      onPressed: () {
-                        context.go("/works");
-                      },
+                  Link(
+                    uri: Uri.parse("/works"),
+                    builder: (context, followLink) => TextButton(
+                      onPressed: followLink,
                       child: const Text(
                         "Works",
                         style: TextStyle(
@@ -78,15 +78,19 @@ class _HomeViewState extends State<HomeView> {
                           fontWeight: FontWeight.bold,
                         ),
                       )),
-                  TextButton(
-                      onPressed: () {
-                        context.go("/profile");
-                      },
+                  ),
+                  Link(
+                    uri: Uri.parse("/profile"),
+                    builder: (context, followLink) => TextButton(
+                      onPressed: followLink,
                       child: const Text(
                         "Profile",
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       )),
+                  ),
                   TextButton(
                     onPressed: () {
                       showLicensePage(context: context);

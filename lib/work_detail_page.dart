@@ -4,20 +4,13 @@ import 'package:adjusted_html_view_web/adjusted_html_view_web.dart';
 import 'package:fastriver_dev_micro/types.microcms.g.dart';
 import 'package:flutter/material.dart';
 import "package:intl/intl.dart";
-import 'package:url_launcher/url_launcher.dart';
-import 'package:go_router/go_router.dart';
+import 'package:url_launcher/Link.dart';
 
 var formatter = DateFormat('yyyy年 MM月', "ja_JP");
 
 class DetailPage extends StatelessWidget {
   final WorksMicroData product;
   const DetailPage({Key? key, required this.product}) : super(key: key);
-
-  void _launchUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +37,13 @@ class DetailPage extends StatelessWidget {
               floating: true,
               expandedHeight: 300,
               backgroundColor: Theme.of(context).primaryColor,
-              leading: IconButton(onPressed: () {
-                context.pop();
-              }, icon: const Icon(Icons.arrow_back)),
+              leading: Link(
+                  uri: Uri.parse("/works"),
+                  builder: (context, followLink) {
+                    return IconButton(
+                        onPressed: followLink,
+                        icon: const Icon(Icons.arrow_back));
+                  }),
               title: Text(product.title),
             ),
             SliverPadding(
@@ -120,21 +117,25 @@ class DetailPage extends StatelessWidget {
                                           .map((e) => Padding(
                                                 padding:
                                                     const EdgeInsets.all(4.0),
-                                                child: ElevatedButton(
-                                                    child: Text(
+                                                child: Link(
+                                                    uri: Uri.parse(
                                                         (e as WorksLinkMicroData)
-                                                            .name),
-                                                    onPressed: () async {
-                                                      _launchUrl(e.url);
-                                                    },
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                            shape:
-                                                                RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              30.0),
-                                                    ))),
+                                                            .url),
+                                                    builder:
+                                                        (context, followLink) {
+                                                      return ElevatedButton(
+                                                          child: Text(e.name),
+                                                          onPressed: followLink,
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        30.0),
+                                                          )));
+                                                    }),
                                               ))
                                           .toList(),
                                       alignment: WrapAlignment.start,
