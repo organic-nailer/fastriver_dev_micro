@@ -4,7 +4,6 @@ import 'package:fastriver_dev_micro/home_view.dart';
 import 'package:fastriver_dev_micro/profile_view.dart';
 import 'package:fastriver_dev_micro/safe_launch.dart';
 import 'package:fastriver_dev_micro/theme_switcher.dart';
-import 'package:fastriver_dev_micro/under_construction_view.dart';
 import 'package:fastriver_dev_micro/work_detail_page.dart';
 import 'package:fastriver_dev_micro/works_page.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +12,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   initializeDateFormatting('ja_JP');
+  usePathUrlStrategy();
   runApp(ProviderScope(child: MyApp()));
 }
 
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
             theme: lightTheme.copyWith(textTheme: GoogleFonts.kleeOneTextTheme(lightTheme.textTheme)),
             darkTheme: darkTheme.copyWith(textTheme: GoogleFonts.kleeOneTextTheme(darkTheme.textTheme)),
             themeMode: mode,
+            routeInformationProvider: _router.routeInformationProvider,
             routeInformationParser: _router.routeInformationParser,
             routerDelegate: _router.routerDelegate,
           );
@@ -43,30 +45,39 @@ class MyApp extends StatelessWidget {
 
   final _router = GoRouter(
       routes: [
-        GoRoute(path: "/", redirect: (_) => "/home"),
+        GoRoute(path: "/", redirect: (_, __) => "/home"),
         GoRoute(
             path: "/home",
             pageBuilder: (context, state) {
-              return const MaterialPage(
-                  child: MyHomePage(
-                index: 0,
-              ));
+              return MaterialPage(
+                key: state.pageKey,
+                restorationId: state.pageKey.value,
+                child: const MyHomePage(
+                  index: 0,
+                )
+              );
             }),
         GoRoute(
             path: "/works",
             pageBuilder: (context, state) {
-              return const MaterialPage(
-                  child: MyHomePage(
-                index: 1,
-              ));
+              return MaterialPage(
+                key: state.pageKey,
+                restorationId: state.pageKey.value,
+                child: const MyHomePage(
+                  index: 1,
+                )
+              );
             }),
         GoRoute(
             path: "/profile",
             pageBuilder: (context, state) {
-              return const MaterialPage(
-                  child: MyHomePage(
-                index: 2,
-              ));
+              return MaterialPage(
+                key: state.pageKey,
+                restorationId: state.pageKey.value,
+                child: const MyHomePage(
+                  index: 2,
+                )
+              );
             }),
         GoRoute(
             path: "/works/:wid",
@@ -78,6 +89,7 @@ class MyApp extends StatelessWidget {
 
               return MaterialPage(
                   key: state.pageKey,
+                  restorationId: state.pageKey.value,
                   child: DetailPage(
                     key: state.pageKey,
                     product: work,
@@ -86,6 +98,7 @@ class MyApp extends StatelessWidget {
       ],
       errorPageBuilder: (context, state) => MaterialPage<void>(
           key: state.pageKey,
+          restorationId: state.pageKey.value,
           child: Center(
             child: Text(state.error?.toString() ?? "Not found"),
           )));
@@ -267,7 +280,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ? const WorksPage()
                     : widget.index == 0
                         ? const HomeView()
-                        : ProfileView())
+                        : const ProfileView())
           ],
         ),
       );
