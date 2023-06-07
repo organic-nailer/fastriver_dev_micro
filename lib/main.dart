@@ -8,6 +8,7 @@ import 'package:fastriver_dev_micro/works_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fast_ui_white/flutter_fast_ui_white.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -160,11 +161,12 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (context, followLink) {
                 return IconButton(
                     onPressed: followLink,
-                    icon: Image.asset(
-                      "asset/logo_github.png",
-                      color: FastTheme.of(context).nonColoredAccent,
-                      isAntiAlias: true,
-                      semanticLabel: "GitHub",
+                    icon: SvgPicture.asset(
+                      "asset/logo_github.svg",
+                      colorFilter: ColorFilter.mode(
+                          FastTheme.of(context).nonColoredAccent,
+                          BlendMode.srcIn),
+                      semanticsLabel: "GitHub",
                     ));
               }
             ),
@@ -176,11 +178,12 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (context, followLink) {
                 return IconButton(
                     onPressed: followLink,
-                    icon: Image.asset(
-                      "asset/logo_twitter.png",
-                      color: FastTheme.of(context).nonColoredAccent,
-                      isAntiAlias: true,
-                      semanticLabel: "Twitter",
+                    icon: SvgPicture.asset(
+                      "asset/logo_twitter.svg",
+                      colorFilter: ColorFilter.mode(
+                          FastTheme.of(context).nonColoredAccent,
+                          BlendMode.srcIn),
+                      semanticsLabel: "Twitter",
                     ));
               }
             ),

@@ -44,9 +44,7 @@ dependencies:
   http: ^0.13.4
   intl: ^0.18.0
   url_launcher: ^6.0.13
-  webviewx: ^0.2.1
   clippy_flutter: 2.0.0-nullsafety.1
-  rive: ^0.10.3
   go_router: ^7.0.1
   uuid: ^3.0.5
   google_fonts: ^4.0.3
@@ -104,8 +102,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - asset/logo_github.png
-    - asset/logo_twitter.png
+    - asset/logo_github.svg
+    - asset/logo_twitter.svg
     - asset/fastriver_logo.jpg
     - asset/logo_zenn.svg
     - asset/logo_qiita.png
