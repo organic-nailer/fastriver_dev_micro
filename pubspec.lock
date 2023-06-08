@@ -126,15 +126,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_fast_ui_white:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: "v0.4.1"
-      resolved-ref: "880e7864b18f111e26944a79d4f6d65b8c37a57a"
-      url: "https://github.com/organic-nailer/flutter_fast_ui_white"
-    source: git
-    version: "0.4.0"
   flutter_lints:
     dependency: "direct dev"
     description:

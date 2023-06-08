@@ -56,10 +56,10 @@ class _WorksPageState extends State<WorksPage> {
 
   Widget itemWidget(WorksMicroData data) => Card(
         margin: const EdgeInsets.all(8),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
-            side: (Theme.of(context).cardTheme.shape as RoundedRectangleBorder)
-                .side),
+        // shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.circular(20.0),
+        //     side: (Theme.of(context).cardTheme.shape as RoundedRectangleBorder)
+        //         .side),
         clipBehavior: Clip.antiAlias,
         child: Link(
           uri: Uri.parse("/works/${data.id}"),
@@ -98,7 +98,7 @@ class _WorksPageState extends State<WorksPage> {
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(36.0),
-                                color: Theme.of(context).primaryColor.withAlpha(25)
+                                color: Theme.of(context).colorScheme.secondaryContainer,
                               ),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20.0),

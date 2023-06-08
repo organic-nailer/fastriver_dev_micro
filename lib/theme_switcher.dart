@@ -1,15 +1,15 @@
 // https://github.com/organic-nailer/flutter_fast_ui_white/blob/master/example/lib/components/theme_switcher.dart
+import 'package:fastriver_dev_micro/theme_scope.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fast_ui_white/flutter_fast_ui_white.dart';
 
 class ThemeSwitcher extends StatefulWidget {
   const ThemeSwitcher({Key? key}) : super(key: key);
 
   @override
-  _ThemeSwitcherState createState() => _ThemeSwitcherState();
+  ThemeSwitcherState createState() => ThemeSwitcherState();
 }
 
-class _ThemeSwitcherState extends State<ThemeSwitcher> {
+class ThemeSwitcherState extends State<ThemeSwitcher> {
   bool isDark = false;
   @override
   void initState() {
@@ -18,7 +18,7 @@ class _ThemeSwitcherState extends State<ThemeSwitcher> {
 
   @override
   void didChangeDependencies() {
-    isDark = FastTheme.of(context).isDark;
+    isDark = FastTheme.of(context).isDark(context);
     super.didChangeDependencies();
   }
 
