@@ -2,12 +2,13 @@ import 'package:fastriver_dev_micro/datastore.microcms.g.dart';
 import 'package:fastriver_dev_micro/fast_color.dart';
 import 'package:fastriver_dev_micro/home_view.dart';
 import 'package:fastriver_dev_micro/profile_view.dart';
+import 'package:fastriver_dev_micro/theme_scope.dart';
 import 'package:fastriver_dev_micro/theme_switcher.dart';
 import 'package:fastriver_dev_micro/work_detail_page.dart';
 import 'package:fastriver_dev_micro/works_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_fast_ui_white/flutter_fast_ui_white.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -27,8 +28,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return FastThemeScope(
-        accentColor: materialFastGreen,
+    return ThemeScope(
+        seedColor: materialFastGreen,
         themeMode: ThemeMode.system,
         builder: (context, lightTheme, darkTheme, mode) {
           return MaterialApp.router(
@@ -82,7 +83,7 @@ class MyApp extends StatelessWidget {
         GoRoute(
             path: "/works/:wid",
             pageBuilder: (context, state) {
-              final wid = state.params["wid"]!;
+              final wid = state.pathParameters["wid"]!;
               final data = MicroCMSDataStore.worksData;
               final work = data.firstWhere((e) => e.id == wid,
                   orElse: () => throw Exception("works not found: $wid"));
@@ -117,8 +118,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool? railExtended;
-
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   @override
@@ -131,28 +130,20 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final isPhone = constraints.biggest.width <= 480;
-      final isPC = constraints.biggest.width > 768;
-      railExtended ??= isPC;
       return Scaffold(
         key: _key,
-        appBar: FastAppBar(
-          leading: Padding(
+        appBar: AppBar(
+          leading: isPhone ? Padding(
             padding: const EdgeInsets.only(left: 16),
             child: IconButton(
               splashRadius: 24,
               icon: const Icon(Icons.menu),
               onPressed: () {
-                if (isPhone) {
-                  _key.currentState!.openDrawer();
-                } else {
-                  setState(() {
-                    railExtended = !railExtended!;
-                  });
-                }
+                _key.currentState!.openDrawer();
               },
             ),
-          ),
-          title: const Text("Fastriver.dev"),
+          ) : null,
+          title: const Text("Fastriver.dev", style: TextStyle(fontWeight: FontWeight.bold),),
           toolbarHeight: 64,
           actions: [
             Link(
@@ -160,11 +151,16 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (context, followLink) {
                 return IconButton(
                     onPressed: followLink,
-                    icon: Image.asset(
-                      "asset/logo_github.png",
-                      color: FastTheme.of(context).nonColoredAccent,
-                      isAntiAlias: true,
-                      semanticLabel: "GitHub",
+                    icon: SvgPicture.asset(
+                      "asset/logo_github.svg",
+                      colorFilter: ColorFilter.mode(
+                          FastTheme.of(context).isDark(context)
+                              ? Colors.white
+                              : Colors.black,
+                          BlendMode.srcIn),
+                      semanticsLabel: "GitHub",
+                      width: 32,
+                      height: 32,
                     ));
               }
             ),
@@ -176,11 +172,16 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (context, followLink) {
                 return IconButton(
                     onPressed: followLink,
-                    icon: Image.asset(
-                      "asset/logo_twitter.png",
-                      color: FastTheme.of(context).nonColoredAccent,
-                      isAntiAlias: true,
-                      semanticLabel: "Twitter",
+                    icon: SvgPicture.asset(
+                      "asset/logo_twitter.svg",
+                      colorFilter: ColorFilter.mode(
+                          FastTheme.of(context).isDark(context)
+                              ? Colors.white
+                              : Colors.black,
+                          BlendMode.srcIn),
+                      semanticsLabel: "Twitter",
+                      width: 28,
+                      height: 28,
                     ));
               }
             ),
@@ -252,19 +253,20 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             if (!isPhone)
               NavigationRail(
-                destinations: const [
+                labelType: NavigationRailLabelType.all,
+                destinations: [
                   NavigationRailDestination(
-                      icon: Icon(Icons.house_outlined),
-                      selectedIcon: Icon(Icons.house),
-                      label: Text("ホーム")),
+                      icon: const Icon(Icons.house_outlined),
+                      selectedIcon: const Icon(Icons.home),
+                      label: Text("ホーム", style: Theme.of(context).textTheme.labelLarge,)),
                   NavigationRailDestination(
-                      icon: Icon(Icons.museum_outlined),
-                      selectedIcon: Icon(Icons.museum),
-                      label: Text("作品集")),
+                      icon: const Icon(Icons.museum_outlined),
+                      selectedIcon: const Icon(Icons.museum),
+                      label: Text("作品集", style: Theme.of(context).textTheme.labelLarge,)),
                   NavigationRailDestination(
-                      icon: Icon(Icons.badge_outlined),
-                      selectedIcon: Icon(Icons.badge),
-                      label: Text("プロフィール")),
+                      icon: const Icon(Icons.badge_outlined),
+                      selectedIcon: const Icon(Icons.badge),
+                      label: Text("プロフィール", style: Theme.of(context).textTheme.labelLarge,)),
                 ],
                 onDestinationSelected: (index) {
                   final path = index == 0
@@ -275,12 +277,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   context.go(path);
                 },
                 selectedIndex: widget.index,
-                extended: railExtended!,
+                elevation: 1,
               ),
-            const VerticalDivider(
-              thickness: 1,
-              width: 1,
-            ),
             Expanded(
                 child: widget.index == 1
                     ? const WorksPage()

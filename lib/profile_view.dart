@@ -26,12 +26,21 @@ class ProfileView extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: SizedBox(
-                    width: 96, height: 96,
-                    child: Image.asset("asset/fastriver_logo.jpg")
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: SizedBox(
+                        width: 96,
+                        height: 96,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(24),
+                          child: Image.asset("asset/fastriver_logo.jpg", fit: BoxFit.cover,),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Text("Fastriver/@fastriver_org", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge,),
                 const Padding(
