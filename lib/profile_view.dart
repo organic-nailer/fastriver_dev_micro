@@ -9,6 +9,15 @@ import 'package:url_launcher/link.dart';
 
 import 'package:intl/intl.dart';
 
+const List<(String, String)> _linkChips = [
+  ("Twitter", "https://twitter.com/fastriver_org"),
+  ("GitHub", "https://github.com/organic-nailer"),
+  ("Zenn", "https://zenn.dev/fastriver"),
+  ("Qiita", "https://qiita.com/fastriver_org"),
+  ("Hatena", "https://nageler.hatenablog.com/"),
+  ("Lab", "https://sites.google.com/keio.jp/keio-csg/"),
+];
+
 class ProfileView extends ConsumerWidget {
   const ProfileView({Key? key}) : super(key: key);
 
@@ -46,6 +55,19 @@ class ProfileView extends ConsumerWidget {
                 const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text("時代は20XX年。空前の四字熟語ブームにより“四字熟語戦国時代”と化した矢上。勉強や喧嘩の強さではなく四字熟語を積んだ高さで優劣を決められてしまう世界で、激しいタワーバトルを繰り広げる暇人たちの熱い戦いが繰り広げられる― / 「四字熟語タワーバトル」より"),
+                ),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 8.0,
+                  children: _linkChips.map((e) => Link(
+                    uri: Uri.parse(e.$2),
+                    builder: (context, followLink) {
+                      return ActionChip(
+                        label: Text(e.$1),
+                        onPressed: followLink,
+                      );
+                    }
+                  )).toList(),
                 ),
                 Text("活動", style: Theme.of(context).textTheme.headlineLarge,),
                 const Divider(),
