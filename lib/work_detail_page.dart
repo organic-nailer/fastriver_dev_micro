@@ -173,7 +173,7 @@ class DetailPage extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: AdjustedHtmlView(
                                 htmlText: product.description ??
-                                    "<h1>No description</h1>"),,
+                                    "<h1>No description</h1>"),
                             ),
                             
                           ],
