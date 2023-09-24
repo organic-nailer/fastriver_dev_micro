@@ -173,13 +173,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 return IconButton(
                     onPressed: followLink,
                     icon: SvgPicture.asset(
-                      "asset/logo_twitter.svg",
+                      "asset/logo_x.svg",
                       colorFilter: ColorFilter.mode(
                           FastTheme.of(context).isDark(context)
                               ? Colors.white
                               : Colors.black,
                           BlendMode.srcIn),
-                      semanticsLabel: "Twitter",
+                      semanticsLabel: "X a.k.a. Twitter",
                       width: 28,
                       height: 28,
                     ));

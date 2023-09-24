@@ -10,7 +10,7 @@ import 'package:url_launcher/link.dart';
 import 'package:intl/intl.dart';
 
 const List<(String, String)> _linkChips = [
-  ("Twitter", "https://twitter.com/fastriver_org"),
+  ("X (Twitter)", "https://twitter.com/fastriver_org"),
   ("GitHub", "https://github.com/organic-nailer"),
   ("Zenn", "https://zenn.dev/fastriver"),
   ("Qiita", "https://qiita.com/fastriver_org"),
