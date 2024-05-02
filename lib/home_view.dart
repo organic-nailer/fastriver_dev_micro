@@ -103,7 +103,7 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text("© 2021-2023 fastriver_org"),
+                    child: Text("© 2021-2024 fastriver_org"),
                   )
                 ],
               ),
