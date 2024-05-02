@@ -46,6 +46,9 @@ dependencies:
   flutter_svg: ^2.0.4
   align_positioned: ^4.0.1
 
+dependency_overrides:
+  web: ^0.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
