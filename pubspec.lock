@@ -5,10 +5,10 @@ packages:
     dependency: "direct main"
     description:
       name: adjusted_html_view_web
-      sha256: "3b84aceb44ce9774bf83f11c5293416253b7b1f0f7fe1bac00bab4a072a4d2ac"
+      sha256: "8d2c4c1db9ffd786fc963ffd00a76c814ef3ccec5936ca10d5e8d2e0b918b897"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.3"
+    version: "0.1.0"
   align_positioned:
     dependency: "direct main"
     description:
@@ -544,10 +544,10 @@ packages:
     dependency: "direct overridden"
     description:
       name: web
-      sha256: "4188706108906f002b3a293509234588823c8c979dc83304e229ff400c996b05"
+      sha256: afe077240a270dcfd2aafe77602b4113645af95d0ad31128cc02bce5ac5d5152
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.2"
+    version: "0.3.0"
   win32:
     dependency: transitive
     description:
