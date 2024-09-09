@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
         builder: (context, lightTheme, darkTheme, mode) {
           return MaterialApp.router(
             title: 'Fastriver.dev',
-            theme: lightTheme.copyWith(textTheme: GoogleFonts.kleeOneTextTheme(lightTheme.textTheme)),
-            darkTheme: darkTheme.copyWith(textTheme: GoogleFonts.kleeOneTextTheme(darkTheme.textTheme)),
+            theme: lightTheme.copyWith(textTheme: GoogleFonts.ibmPlexSansJpTextTheme(lightTheme.textTheme)),
+            darkTheme: darkTheme.copyWith(textTheme: GoogleFonts.ibmPlexSansJpTextTheme(darkTheme.textTheme)),
             themeMode: mode,
             routeInformationProvider: _router.routeInformationProvider,
             routeInformationParser: _router.routeInformationParser,
