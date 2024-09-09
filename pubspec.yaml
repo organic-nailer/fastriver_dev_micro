@@ -45,6 +45,7 @@ dependencies:
   xml: ^6.1.0
   flutter_svg: ^2.0.4
   align_positioned: ^4.0.1
+  budoux_dart: ^1.2.0
 
 dependency_overrides:
   web: ^0.5.1
@@ -107,6 +108,7 @@ flutter:
     - asset/logo_qiita.png
     - asset/logo_hatena.svg
     - asset/logo_x.svg
+    - asset/ja.json # budoux
 
 
   # To add assets to your application, add an assets section, like this:

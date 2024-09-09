@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:fastriver_dev_micro/animated_grid.dart';
 import 'package:fastriver_dev_micro/datastore.microcms.g.dart';
 import 'package:fastriver_dev_micro/types.microcms.g.dart';
+import 'package:fastriver_dev_micro/util/budoux.dart';
 import 'package:flutter/material.dart' hide AnimatedGrid;
 import 'package:intl/intl.dart';
 import 'package:url_launcher/link.dart';
@@ -129,10 +130,18 @@ class _WorksPageState extends State<WorksPage> {
                             Padding(
                               padding: const EdgeInsets.only(
                                   top: 16, left: 16, right: 16),
-                              child: Text(data.short_text ?? "",
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.bodyLarge),
+                              child: Wrap(
+                                alignment: WrapAlignment.center,
+                                children: BudouxUtil().parse(data.short_text ?? "")
+                                    .map((e) => Text(e,
+                                        textAlign: TextAlign.center,
+                                        style: Theme.of(context).textTheme.bodyLarge))
+                                    .toList(),
+                              ),
+                              // child: Text(BudouxUtil().parse(data.short_text ?? "").join("\n"),
+                              //     maxLines: 2,
+                              //     overflow: TextOverflow.ellipsis,
+                              //     style: Theme.of(context).textTheme.bodyLarge),
                             )
                           ],
                         ),

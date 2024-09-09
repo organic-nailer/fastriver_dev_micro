@@ -4,6 +4,7 @@ import 'package:fastriver_dev_micro/home_view.dart';
 import 'package:fastriver_dev_micro/profile_view.dart';
 import 'package:fastriver_dev_micro/theme_scope.dart';
 import 'package:fastriver_dev_micro/theme_switcher.dart';
+import 'package:fastriver_dev_micro/util/budoux.dart';
 import 'package:fastriver_dev_micro/work_detail_page.dart';
 import 'package:fastriver_dev_micro/works_page.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +16,11 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:url_launcher/link.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initializeDateFormatting('ja_JP');
   usePathUrlStrategy();
+  await BudouxUtil().init();
   runApp(ProviderScope(child: MyApp()));
 }
 
