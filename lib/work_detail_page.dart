@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:adjusted_html_view_web/adjusted_html_view_web.dart';
+import 'package:fastriver_dev_micro/adjusted_html_view_wrapper/adjusted_html_view_wrapper.dart';
 import 'package:fastriver_dev_micro/theme_switcher.dart';
 import 'package:fastriver_dev_micro/types.microcms.g.dart';
 import 'package:flutter/material.dart';
@@ -171,9 +171,10 @@ class DetailPage extends StatelessWidget {
                               ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: AdjustedHtmlView(
-                                htmlText: product.description ??
-                                    "<h1>No description</h1>"),
+                              child: AdjustedHtmlViewWrapper().build(product.description ?? "<h1>No description</h1>"),
+                              // child: AdjustedHtmlView(
+                              //   htmlText: product.description ??
+                              //       "<h1>No description</h1>"),
                             ),
                             
                           ],
