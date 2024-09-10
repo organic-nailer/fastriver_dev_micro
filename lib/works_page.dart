@@ -185,7 +185,22 @@ class _WorksPageState extends State<WorksPage> {
                   builder: (context, followLink) {
                     return Material(
                       color: Colors.transparent,
-                      child: InkWell(onTap: followLink, child: Container()),
+                      child: InkWell(
+                        onTap: followLink,
+                        hoverColor: Theme.of(context)
+                            .colorScheme
+                            .secondary
+                            .withOpacity(0.1),
+                        splashColor: Theme.of(context)
+                            .colorScheme
+                            .secondary
+                            .withOpacity(0.05),
+                        highlightColor: Theme.of(context)
+                            .colorScheme
+                            .secondary
+                            .withOpacity(0.1),
+                        child: Container(),
+                      ),
                     );
                   },
                 ),

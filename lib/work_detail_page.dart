@@ -34,150 +34,164 @@ class DetailPage extends StatelessWidget {
             Flexible(
               child: Container(
                 constraints: const BoxConstraints(maxWidth: 800, minWidth: 100),
-                child: Card(
-                  elevation: 6,
-                  shape: const BeveledRectangleBorder(),
-                  margin: const EdgeInsets.only(bottom: 24),
-                  child: LayoutBuilder(builder: (context, constraints) {
-                    var width = constraints.biggest.width;
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Stack(
-                          children: [
-                            if (product.header != null)
-                              Positioned(
-                                top: 0,
-                                left: 0,
-                                bottom: 0,
-                                child: ShaderMask(
-                                  child: ConstrainedBox(
-                                    constraints: BoxConstraints.tight(
-                                        Size(width, width * 296 / 800.0)),
+                padding: const EdgeInsets.all(8.0),
+                child: LayoutBuilder(builder: (context, constraints) {
+                  var width = constraints.biggest.width;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(24.0),
+                        child: AspectRatio(
+                          aspectRatio: 25 / 10,
+                          child: Stack(
+                            children: [
+                              Positioned.fill(
+                                child: Container(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceContainer,
+                                ),
+                              ),
+                              if (product.header != null)
+                                Positioned.fill(
+                                  child: ShaderMask(
                                     child: Image.network(
                                       product.header!.url,
                                       fit: BoxFit.cover,
                                     ),
-                                  ),
-                                  shaderCallback: (bounds) {
-                                    return LinearGradient(
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                      colors: [
-                                        Colors.white.withAlpha(150),
-                                        Colors.white.withAlpha(0),
-                                      ],
-                                    ).createShader(Rect.fromLTRB(
-                                        0, 0, bounds.width, bounds.height));
-                                  },
-                                ),
-                              ),
-                            Padding(
-                              padding: EdgeInsets.all(width * 32 / 800.0),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(width * 16 / 800.0),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(
-                                          width * 36 / 800.0),
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondaryContainer
-                                          .withAlpha(100),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius:
-                                          BorderRadius.circular(width * 0.025),
-                                      child: product.icon != null
-                                          ? Image.network(
-                                              product.icon!.url,
-                                              height: max(width * 0.25, 50),
-                                              width: max(width * 0.25, 50),
-                                            )
-                                          : Icon(Icons.dashboard_customize,
-                                              size: min(width * 0.25, 50)),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.stretch,
-                                        children: [
-                                          Text(
-                                            "${formatter.format(date.toLocal())} 作成",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodySmall,
-                                          ),
-                                          Text(
-                                            product.title,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .displayMedium,
-                                          ),
-                                          Text(
-                                            product.short_text ?? "[short]",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium,
-                                          ),
+                                    shaderCallback: (bounds) {
+                                      return LinearGradient(
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight,
+                                        colors: [
+                                          Colors.white.withAlpha(10),
+                                          Colors.white.withAlpha(150),
                                         ],
+                                      ).createShader(Rect.fromLTRB(
+                                          0, 0, bounds.width, bounds.height));
+                                    },
+                                  ),
+                                ),
+                              Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Container(
+                                      padding: const EdgeInsets.all(24),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(54.0),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .surface,
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(40.0),
+                                        child: product.icon != null
+                                            ? Image.network(
+                                                product.icon!.url,
+                                                height: 180,
+                                                width: 180,
+                                              )
+                                            : const Icon(
+                                                Icons.dashboard_customize,
+                                                size: 180),
                                       ),
                                     ),
-                                  )
-                                ],
+                                  ),
+                                ),
                               ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              "${formatter.format(date.toLocal())} 作成",
+                              style: Theme.of(context).textTheme.bodyLarge,
                             ),
+                            Text(
+                              product.title,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayLarge
+                                  ?.merge(const TextStyle(
+                                      height: 1.5,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                            Text(
+                              product.short_text ?? "[short]",
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ),
+                            if (product.links != null)
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8),
+                                child: Wrap(
+                                  alignment: WrapAlignment.start,
+                                  children: product.links!
+                                      .map((e) => Padding(
+                                            padding:
+                                                const EdgeInsets.only(right: 8),
+                                            child: Link(
+                                                uri: Uri.parse(
+                                                    (e as WorksLinkMicroData)
+                                                        .url),
+                                                builder: (context, followLink) {
+                                                  return OutlinedButton(
+                                                    onPressed: followLink,
+                                                    child: Text(e.name),
+                                                  );
+                                                }),
+                                          ))
+                                      .toList(),
+                                ),
+                              ),
+                            const SizedBox(height: 16),
+                            AdjustedHtmlViewWrapper().build(
+                                product.description ??
+                                    "<h1>No description</h1>"),
                           ],
                         ),
-                        if (product.links != null)
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Wrap(
-                              alignment: WrapAlignment.start,
-                              children: product.links!
-                                  .map((e) => Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: Link(
-                                            uri: Uri.parse(
-                                                (e as WorksLinkMicroData).url),
-                                            builder: (context, followLink) {
-                                              return OutlinedButton(
-                                                onPressed: followLink,
-                                                child: Text(e.name),
-                                              );
-                                              // return ElevatedButton(
-                                              //     child: Text(e.name),
-                                              //     onPressed: followLink,
-                                              //     style: ElevatedButton.styleFrom(
-                                              //         shape:
-                                              //             RoundedRectangleBorder(
-                                              //       borderRadius:
-                                              //           BorderRadius.circular(
-                                              //               30.0),
-                                              //     )));
-                                            }),
-                                      ))
-                                  .toList(),
-                            ),
-                          ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: AdjustedHtmlViewWrapper().build(
-                              product.description ?? "<h1>No description</h1>"),
-                          // child: AdjustedHtmlView(
-                          //   htmlText: product.description ??
-                          //       "<h1>No description</h1>"),
+                      ),
+                      const SizedBox(height: 16),
+                      Container(
+                        height: 48,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24.0),
+                          color: Theme.of(context).colorScheme.surfaceContainer,
                         ),
-                      ],
-                    );
-                  }),
-                ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Row(
+                            children: [
+                              Link(
+                                uri: Uri.parse("/works"),
+                                builder: (context, followLink) {
+                                  return TextButton.icon(
+                                    onPressed: followLink,
+                                    icon: const Icon(
+                                        Icons.arrow_back_ios_new_rounded),
+                                    label: const Text("Back"),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  );
+                }),
               ),
             ),
           ],
