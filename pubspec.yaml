@@ -47,7 +47,6 @@ dependencies:
   align_positioned: ^5.0.1
   budoux_dart: ^1.2.0
 
-  flutter_web_plugins: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
