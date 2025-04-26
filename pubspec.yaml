@@ -86,6 +86,9 @@ static_data_fetcher:
     url: "https://nageler.hatenablog.com/rss"
     ignore_attributes:
       - "description"
+  - label: hexo
+    type: xml
+    url: "https://fastriver.dev/rss2.xml"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

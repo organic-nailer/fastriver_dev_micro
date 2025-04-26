@@ -25,13 +25,13 @@ void main(List<String> args) async {
   }
 
   List data = configMap["static_data_fetcher"];
-  Map<String,String> results = {};
-  for(final item in data) {
+  Map<String, String> results = {};
+  for (final item in data) {
     String label = item["label"];
     String url = item["url"];
     String type = item["type"];
     var response = await http.get(Uri.parse(url));
-    if(response.statusCode != 200) {
+    if (response.statusCode != 200) {
       throw Exception("failed to fetch");
     }
     if (item.containsKey("ignore_attributes")) {
@@ -43,10 +43,9 @@ void main(List<String> args) async {
           }
         }
         results[label] = jsonEncode(decoded);
-      }
-      else if(type == "xml") {
+      } else if (type == "xml") {
         var document = XmlDocument.parse(response.body);
-        for(final d in document.descendantElements) {
+        for (final d in document.descendantElements) {
           for (final attr in item["ignore_attributes"]) {
             if (d.name.local == attr) {
               d.innerXml = "";
@@ -56,8 +55,7 @@ void main(List<String> args) async {
         }
         results[label] = document.toString();
       }
-    }
-    else {
+    } else {
       results[label] = response.body;
     }
   }
@@ -65,7 +63,7 @@ void main(List<String> args) async {
   print("generated");
 }
 
-Future<void> generateData(Map<String,String> data) async {
+Future<void> generateData(Map<String, String> data) async {
   final currentDir = Directory.current.path;
   var outFile = File("$currentDir/lib/static_fetched_data.g.dart");
   if (outFile.existsSync()) {
@@ -78,9 +76,8 @@ Future<void> generateData(Map<String,String> data) async {
   for (final item in data.entries) {
     final privateName = "_\$${item.key}Data";
     sink.write('const $privateName = """${item.value}""";\n');
-    staticDataDeclarations.add(
-      "static const String ${item.key}Data = $privateName;"
-    );
+    staticDataDeclarations
+        .add("static const String ${item.key}Data = $privateName;");
   }
   final dataStoreDeclaration = """
 class StaticFetchedDataStore {
