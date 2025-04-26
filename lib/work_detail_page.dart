@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:fastriver_dev_micro/adjusted_html_view_wrapper/adjusted_html_view_wrapper.dart';
 import 'package:fastriver_dev_micro/theme_switcher.dart';

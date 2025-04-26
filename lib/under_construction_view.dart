@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class UnderConstructionView extends StatelessWidget {
-  const UnderConstructionView({Key? key}) : super(key: key);
+  const UnderConstructionView({super.key});
 
   @override
   Widget build(BuildContext context) {

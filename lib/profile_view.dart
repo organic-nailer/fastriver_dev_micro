@@ -19,7 +19,7 @@ const List<(String, String)> _linkChips = [
 ];
 
 class ProfileView extends ConsumerWidget {
-  const ProfileView({Key? key}) : super(key: key);
+  const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -92,7 +92,7 @@ final dateFormat = DateFormat("yyyy/MM/dd");
 
 class ActivityItem extends StatelessWidget {
   final ActivityMicroData data;
-  const ActivityItem({Key? key, required this.data}): super(key: key);
+  const ActivityItem({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +111,7 @@ class ActivityItem extends StatelessWidget {
 
 class BlogItem extends StatelessWidget {
   final Blog data;
-  const BlogItem({Key? key, required this.data}): super(key: key);
+  const BlogItem({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {

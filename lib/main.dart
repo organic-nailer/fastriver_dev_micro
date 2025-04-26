@@ -25,7 +25,7 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -113,7 +113,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final int index;
-  const MyHomePage({Key? key, this.index = 0}) : super(key: key);
+  const MyHomePage({super.key, this.index = 0});
 
   @override
   _MyHomePageState createState() => _MyHomePageState();

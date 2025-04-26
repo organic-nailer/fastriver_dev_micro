@@ -7,7 +7,7 @@ typedef AnimatedGridBuilder<T> = Widget Function(
 class AnimatedGrid<T> extends StatelessWidget {
   /// An animated grid the animates when the items change sort.
   const AnimatedGrid({
-    Key? key,
+    super.key,
     required this.itemHeight,
     required this.items,
     required this.keyBuilder,
@@ -18,7 +18,7 @@ class AnimatedGrid<T> extends StatelessWidget {
     this.columns = 2,
     this.duration = const Duration(milliseconds: 750),
     this.curve = Curves.elasticOut,
-  }) : super(key: key);
+  });
 
   /// The grid items. Should all be the same height.
   final List<T> items;

@@ -15,14 +15,6 @@ const MONTHS = {
 
 DateTime? parseRfc822(String input) {
   var splits = input.split(' ');
-  var reformatted = splits[3] +
-      '-' +
-      MONTHS[splits[2]]! +
-      '-' +
-      (splits[1].length == 1 ? '0' + splits[1] : splits[1]) +
-      ' ' +
-      splits[4] +
-      ' ' +
-      '+0000';
+  var reformatted = '${splits[3]}-${MONTHS[splits[2]]!}-${splits[1].length == 1 ? '0${splits[1]}' : splits[1]} ${splits[4]} +0000';
   return DateTime.tryParse(reformatted);
 }

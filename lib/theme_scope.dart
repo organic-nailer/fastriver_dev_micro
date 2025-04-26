@@ -8,11 +8,10 @@ class ThemeScope extends StatefulWidget {
   final ThemeMode themeMode;
   final MaterialBuilder builder;
   const ThemeScope(
-      {Key? key,
+      {super.key,
       required this.seedColor,
       required this.themeMode,
-      required this.builder})
-      : super(key: key);
+      required this.builder});
 
   @override
   ThemeScopeState createState() => ThemeScopeState();

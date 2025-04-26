@@ -3,7 +3,7 @@ import 'package:fastriver_dev_micro/theme_scope.dart';
 import 'package:flutter/material.dart';
 
 class ThemeSwitcher extends StatefulWidget {
-  const ThemeSwitcher({Key? key}) : super(key: key);
+  const ThemeSwitcher({super.key});
 
   @override
   ThemeSwitcherState createState() => ThemeSwitcherState();
