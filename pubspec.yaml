@@ -54,12 +54,12 @@ dev_dependencies:
   static_data_fetcher:
     path: static_data_fetcher
 
-  # The "flutter_lints" package below contains a set of recommended lints to
+  # The "very_good_analysis" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  very_good_analysis: ^7.0.0
 
 static_micro_cms:
   baseUrl: "https://fastriver-dev.microcms.io/api/v1"
